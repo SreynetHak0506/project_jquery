@@ -24,55 +24,77 @@ $(function(){
     }
   
   }
-  $(document).ready( () =>{
-    requestAPI();
-  });
 
-  var requestAPI = () =>{
-    $.ajax({
-      dataType:'json',
-      url:getUrl(),
-      success:(data) => getRecipes(data),
-      error: () => getError(),
-    });
-  }
-
-  var getUrl = () =>{
-    var url = "https://raw.githubusercontent.com/ronanogor/jquery-project/master/database-v1.json";
+  function getUrl(){
+    var url ="https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
-  }
+}
 
-  var getRecipes = (data) =>{
-    data.recipes.forEach(element => {
-     getIngredient(element.ingredients);
-      
+$(document).ready(function(){
+ getApi();
+ $('#select').on('change',function(){
+    var recipeId = $('#select').val();
+    eachRecipe(recipeId);
+ });
+
+});
+
+function getApi(){
+    $.ajax({
+        dataType:'json',
+        url:getUrl(),
+        success:(data) =>chooseRecipe(data.recipes),
+        error:() => console.log("Cannot get data"),
+    })
+}
+
+var allDat = [];
+function chooseRecipe(recipe){
+    allDat = recipe;
+    var option = "";
+    recipe.forEach(element => {
+        option +=`
+         <option value="${element.id}">${element.name}</option>
+        `;   
     });
-  }
-
-  var getError = () =>{
-  }
-
-  var getIngredient = (data) =>{
-    data.forEach(item => {
-      computeHTML(item);
-    });
-  }
-
-  var computeHTML = (element) =>{
-    var result = "";
-    result += `
-       <tr>
-            <td> <img src = "${element.iconUrl}" width="40"</td>
-            <td>${element.quantity}</td>
-            <td>${element.unit[0]}</td>
-            <td>${element.name}</td>
-           
-        </tr>
+    $('#select').append(option);
+}
+function eachRecipe(id){
+   allDat.forEach(item =>{
+       if(item.id == id){
+           showRecipe(item.name ,item.iconUrl);
+           showIngredient(item.ingredients);
+       }
+   })
+}
+function showRecipe(name, imag){
+    var result ="";
+    result +=` 
+    <h2>${name}</h2>
+    <img src ="${imag}" width="300">
     
     `;
-    printOut(result);
-  }
+    $('#recipe-result').html(result);
 
-  var printOut = (output) =>{
-    $('#ingredients').append(output);
-  }
+}
+
+function showIngredient(done){
+    var results ="";
+    done.forEach(item =>{
+        results +=`
+    <tr>
+    <h1>Ingredients</h1>
+      <td><img src ="${item.iconUrl}" width="100"></td>
+      <td>${item.unit[0]}</td>
+      <td>${item.quantity}</td>
+      <td>${item.name}</td>
+
+    </tr>
+    `;
+    $('#table').html(results);
+    })
+     
+    
+}
+   
+    
