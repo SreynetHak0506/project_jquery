@@ -64,6 +64,7 @@ function eachRecipe(id){
        if(item.id == id){
            showRecipe(item.name ,item.iconUrl);
            showIngredient(item.ingredients);
+           showInstruction(item.instructions);
        }
    })
 }
@@ -83,7 +84,6 @@ function showIngredient(done){
     done.forEach(item =>{
         results +=`
     <tr>
-    <h1>Ingredients</h1>
       <td><img src ="${item.iconUrl}" width="100"></td>
       <td>${item.unit[0]}</td>
       <td>${item.quantity}</td>
@@ -93,8 +93,19 @@ function showIngredient(done){
     `;
     $('#table').html(results);
     })
-     
-    
+}
+
+function showInstruction(){
+  var  result ="";
+  var store ="<step>Add the avocado, sugar and concentrated milk into the blender<step>Add the ice<step>Mix for 10 mins";
+  var cutInstruction = store.split("<step>");
+  for( let i = 1; i<cutInstruction.length; i++){
+      result +=`
+    <p class="text-primary"> Step ${i}</p>
+    <p>${cutInstruction[i]}</p>
+      `;
+      $('#table2').html(result);
+  }
 }
    
     
