@@ -21,6 +21,7 @@ $(function(){
        input.val(--value);
      }else{
        $('#manus').attr('disabled','disabled');
+       $('#rulers').hide();
     }
   
   }
@@ -58,6 +59,7 @@ function chooseRecipe(recipe){
         `;   
     });
     $('#select').append(option);
+    $('#rulers').show();
 }
 function eachRecipe(id){
    allDat.forEach(item =>{
@@ -101,10 +103,11 @@ function showInstruction(){
   var cutInstruction = store.split("<step>");
   for( let i = 1; i<cutInstruction.length; i++){
       result +=`
-    <p class="text-primary"> Step ${i}</p>
+    <p class="text-primary">Step ${i}</p>
     <p>${cutInstruction[i]}</p>
       `;
       $('#table2').html(result);
+      
   }
 }
    
