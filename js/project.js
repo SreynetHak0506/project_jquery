@@ -21,9 +21,7 @@ $(function(){
        input.val(--value);
      }else{
        $('#manus').attr('disabled','disabled');
-       $('#showrulers').hide();
-       $('#show').hide();
-       $('#shows').hide();
+      
     }
   
   }
@@ -64,21 +62,30 @@ function chooseRecipe(recipe){
     $('#showrulers').hide();
     $('#show').hide();
     $('#shows').hide();
+    $('#table3').hide();
 }
+$('#style').hide();
 function eachRecipe(id){
    allDat.forEach(item =>{
        if(item.id == id){
            showRecipe(item.name ,item.iconUrl);
            showIngredient(item.ingredients);
            showInstruction(item.instructions);
+           $(' #style').show();
        }
    })
 }
 function showRecipe(name, imag){
     var result ="";
     result +=` 
-    <h2>${name}</h2>
+    <div class="card" style="border:5px solid cyan">
+    <div class="card-header " 
+    <h1><strong>${name}</strong></h1>
+    </div>
+    <div class="card-body">
     <img src ="${imag}" width="300">
+    </div>
+    </div>
     
     `;
     $('#recipe-result').html(result);
@@ -100,6 +107,7 @@ function showIngredient(done){
     `;
     $('#table').html(results);
     $('#show').show();
+    $('#table3').show();
 
     })
 }
@@ -109,8 +117,10 @@ function showInstruction(input){
   var cutInstruction = input.split("<step>");
   for( let i = 1; i<cutInstruction.length; i++){
       result +=`
-    <p class="text-primary">step${i}</p>
-    <p>${cutInstruction[i]}</p>
+    <tr>
+        <td><strong><h3 class="text-primary">step${i}</h3></strong></td>
+    </tr>
+    <td>${cutInstruction[i]}</td>
       `;
       $('#table2').html(result);
       $('#shows').show();

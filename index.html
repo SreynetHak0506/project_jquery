@@ -7,20 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PROJECT JAVA FRAMEWORK</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-        .ruler {
-            border-left: 2px solid blue;
-            height:55%;
-            position: absolute;
-            left: 35%;
-        }
-    </style>
+   
 </head>
 
-<body>
+<body background="image/fathers-day-breakfast-ideas-1559577112 (1).jpg" style="background-size: cover;">
     <div class="container mt-5">
         <div class="row">
-            <div class="col-4"></div>
+                <div class="col-4" id="recipe-result">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-danger" type="button" id="manus">&#8722;</button>  
+                            <input type="text" class="form-control text-center" id="input" value="0" >
+                            <div class="input-group-append">
+                              <button class="btn btn-success" id="plus" type="button">&#43;</button>  
+                             </div>
+                          </div>
+                    </div>
             <div class="col-4">
                 <select id="select" class="form-control">
                     <option value="" disabled selected>choose recipe</option>
@@ -28,23 +29,30 @@
             </div>
             <div class="col-4" id="recipe-result">
             </div>
-
         </div>
     </div>
     <br>
-    <div class="text-center ruler" id="showrulers"></div>
+
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                    <h1 id="show" class="text-center">Ingredients</h1>
-                <table class="table table-borderless" id="table"></table>
+            <div class="col-6">
+               <div class="card"  id="style" style="border:5px solid cyan">
+                    <div class="card-header">
+                            <h1 id="show" class="text-center">Ingredients</h1>
+                    </div>
+                   <div class="card-body">
+                        <table class="table table-borderless"  id="table"></table>
+                   </div>
+               </div>
             </div>
           
-            <div class="col-4">
-                <h1 id="shows" class="text-center">Instructions</h1>
+            <div class="col-6">
+               <div class="card" id="table3" style="border:5px solid cyan">
+                    <h1 id="shows" class="text-center">Instructions</h1>
                 <div class="table table-border" id="table2"></div>
             </div>
-            <div class="col-4"></div>
+            </div>
+            
         </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
