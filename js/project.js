@@ -95,7 +95,7 @@ function showRecipe(name, imag){
     result +=` 
     <div class="card" style="border:5px solid cyan">
     <div class="card-header " 
-    <h1><strong>${name}</strong></h1>
+    <h1><strong><h3>${name}</h3></strong></h1>
     </div>
     <div class="card-body">
     <img src ="${imag}" width="300" class="img-fluid">
